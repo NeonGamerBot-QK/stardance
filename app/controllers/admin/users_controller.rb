@@ -60,7 +60,7 @@ class Admin::UsersController < Admin::ApplicationController
   end
 
   def user_perms
-    authorize User, :index?
+    authorize User, :user_perms?
     @users = User.where("array_length(granted_roles, 1) > 0").order(:id)
   end
 

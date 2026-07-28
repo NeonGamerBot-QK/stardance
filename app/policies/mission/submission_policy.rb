@@ -14,11 +14,10 @@ class Mission::SubmissionPolicy < ApplicationPolicy
       user.mission_memberships.exists?
   end
 
-  # Show: admin / mission reviewer / per-mission member / submitter / helper.
+  # Show: admin / mission reviewer / per-mission member / submitter.
   def show?
     return false unless user.present?
     return true if user.admin?
-    return true if user.has_role?(:helper)
     return true if user.has_role?(:mission_reviewer)
     return true if per_mission_membership?
     submitter?

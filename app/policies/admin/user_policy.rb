@@ -7,6 +7,10 @@ class Admin::UserPolicy < ApplicationPolicy
     index?
   end
 
+  def user_perms?
+    user&.admin? || user&.fraud_dept?
+  end
+
   def update?
     user&.admin? || user&.fraud_dept?
   end
